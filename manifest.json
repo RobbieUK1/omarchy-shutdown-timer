@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "robbie.shutdown-timer",
+  "name": "Shutdown Timer",
+  "version": "1.0.0",
+  "author": "robbie",
+  "license": "MIT",
+  "description": "Clock button in the bar that schedules a shutdown after a preset or custom delay (1 second to 1 year) and shows a live countdown",
+  "kinds": [
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "barWidget": "Panel.qml"
+  },
+  "barWidget": {
+    "displayName": "Shutdown Timer",
+    "description": "Clock button that arms a shutdown in 10 min to 1 hour and shows a live countdown. The armed timer can be cancelled from the same panel.",
+    "category": "System",
+    "allowMultiple": false,
+    "defaultSection": "right"
+  }
+}
