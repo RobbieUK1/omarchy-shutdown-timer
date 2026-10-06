@@ -16,27 +16,16 @@ time…** for anything from 1 second to 1 year.
 
 ## Install
 
+One command:
+
 ```sh
 omarchy plugin add https://github.com/RobbieUK1/omarchy-shutdown-timer.git --enable
-omarchy restart shell
 ```
 
-The panel shells out to a small helper script, which ships in `bin/` but has to
-live outside the plugin directory, so install it too:
-
-```sh
-mkdir -p ~/.config/omarchy/bar/scripts
-install -m 755 bin/shutdown-timer ~/.config/omarchy/bar/scripts/shutdown-timer
-```
-
-Then right-click your bar -> **Configure bar** (or edit
-`~/.config/omarchy/shell.json`) and add the widget to a section:
-
-```json
-"right": [
-  { "id": "robbie.shutdown-timer" }
-]
-```
+The clock button appears in the bar's **right** section immediately — the
+helper script runs from `bin/` inside the plugin directory, so there is
+nothing to copy and no `shell.json` to edit. Add `--yes` to skip the placement
+question.
 
 ## How it works
 

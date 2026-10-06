@@ -11,7 +11,7 @@ import qs.Ui
 //
 // The timer is a transient user unit (omarchy-shutdown-timer.timer) that runs
 // omarchy-system-shutdown at expiry — the same command as the power menu — so
-// cancel works even after a shell restart. See bar/scripts/shutdown-timer.
+// cancel works even after a shell restart. See bin/shutdown-timer.
 Panel {
   id: root
   moduleName: "robbie.shutdown-timer"
@@ -24,7 +24,17 @@ Panel {
   readonly property color accent: Color.accent
   readonly property string fontFamily: bar ? bar.fontFamily : Style.font.family
 
-  readonly property string scriptBase: "~/.config/omarchy/bar/scripts/shutdown-timer"
+  // This plugin's own directory, derived from this file's location, so the
+  // helper in bin/ runs straight from the checkout that `omarchy plugin add`
+  // made — nothing is copied out of the plugin, which keeps the install to a
+  // single command. Qt.resolvedUrl resolves relative to Panel.qml.
+  readonly property string pluginDir: {
+    var u = String(Qt.resolvedUrl("."))
+    var p = u.replace(/^file:\/\//, "").replace(/\/+$/, "")
+    try { return decodeURIComponent(p) } catch (e) { return p }
+  }
+
+  readonly property string scriptBase: root.pluginDir + "/bin/shutdown-timer"
 
   property bool armed: false
   property int target: 0
